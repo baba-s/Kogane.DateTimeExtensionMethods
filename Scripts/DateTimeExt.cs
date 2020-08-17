@@ -8,8 +8,39 @@ namespace Kogane
 	public static class DateTimeExt
 	{
 		//================================================================================
+		// 定数(static readonly)
+		//================================================================================
+		private static readonly DateTime UNIX_EPOCH = new DateTime
+		(
+			1970, 1, 1,
+			0, 0, 0,
+			DateTimeKind.Utc
+		);
+
+		//================================================================================
+		// プロパティ
+		//================================================================================
+		public static DateTime UnixEpoch => UNIX_EPOCH;
+
+		//================================================================================
 		// 関数(static)
 		//================================================================================
+		/// <summary>
+		/// 1970-01-01T00:00:00Z からの経過時間を秒で返します
+		/// </summary>
+		public static long ToUnixTime( this DateTime self )
+		{
+			return ( long ) self.Subtract( UNIX_EPOCH ).TotalSeconds;
+		}
+
+		/// <summary>
+		/// 1970-01-01T00:00:00Z からの経過時間を秒で示す Unix 時間を DateTime 値に変換します
+		/// </summary>
+		public static DateTime FromUnixTime( long unixTime )
+		{
+			return UNIX_EPOCH.AddSeconds( unixTime ).ToLocalTime();
+		}
+
 		/// <summary>
 		/// yyyy/MM/dd HH:mm:ss 形式の文字列に変換して返します
 		/// </summary>

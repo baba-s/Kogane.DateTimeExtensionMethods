@@ -1,4 +1,4 @@
-# UniDateTimeExtensionMethods
+# Kogane Date Time Extension Methods
 
 DateTime 型の拡張メソッド
 
